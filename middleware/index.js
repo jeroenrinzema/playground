@@ -7,9 +7,13 @@ middleware.on('http:request', async function (ctx) {
   ctx.header.task = 'async'
 })
 
-middleware.on('http:request', async function (ctx) {
+middleware.on('http:request', function () {
+  this.flag = true
+})
+
+middleware.on('http:request', function * (ctx) {
   const promise = new Promise((resolve) => setTimeout(resolve, 1000))
-  await promise
+  yield promise
 
   ctx.response = 'i am thinking'
 })
