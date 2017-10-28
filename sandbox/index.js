@@ -1,7 +1,7 @@
 const Sandbox = require('./sandbox')
 
 const box = new Sandbox('./example', {
-  blacklist: [],
+  blacklist: ['path'],
   middleware: {
     isSafe (module, info) {
       return !info.isBlacklisted
